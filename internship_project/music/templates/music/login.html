@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" 
+    rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{%static 'music/css/login.css' %}"> 
+    <link rel="shortcut icon" href= "{%static 'music/img/logo.png' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="content-box" id="options-container">
+            <h2 class="text-lg text-center margin-between">Welcome</h2>
+            <div class="btn-container">
+                <button class="btn btn-login" onclick="showForm('login')">Sign In</button>
+                <button class="btn btn-signup" onclick="showForm('signup')">Sign Up</button>
+            </div>
+        </div>
+        
+        <div class="content-box" id="login-form" action="" style="display: none;">
+            <h3 class="text-md-b text-center">Sign In</h3>
+            <form>
+                <input class="input-area margin-between" type="text" id="login-username" name="username" placeholder="username" class="text-md-l" required>
+                <input class="input-area margin-between" type="password" id="login-password" name="password" placeholder="Password" class="text-md-l" required>
+                <div class="btn-container">
+                    <button type="submit" class="btn-login">Login</button>
+                    <button class="btn btn-change-password" >Change Password</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="content-box" id="signup-form" style="display: none;">
+            <h3 class="text-md-b text-center">Sign Up</h3>
+            <form>
+                {% csrf_token %}
+                <input class="input-area margin-between" type="text" id="signup-username" name="username" placeholder="username" class="text-md-l" required>
+                <input class="input-area margin-between" type="text" id="signup-password" name="password" placeholder="Password" class="text-md-l" required>
+                <div class="btn-container">
+                    <button type="submit" class="btn">Sign Up</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="content-box" id="change-password-form" style="display: none;">
+            <h3 class="text-md-b text-center">Change Password</h3>
+            <form>
+                {% csrf_token %}
+                <input class="input-area margin-between" type="text" id="username" name="new-username" placeholder="username" class="text-md-l" required>
+                <input class="input-area margin-between" type="password" id="password" name="new-password" placeholder="password" class="text-md-l" required>
+                <input class="input-area margin-between" type="password" id="new-password" name="new-password" placeholder="new password" class="text-md-l" required>
+                <div class="btn-container">
+                    <button class="btn-password-change">Change Password</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="content-box" id="define-user-form" style="display: none;">
+            <h3 class="text-md-b text-center">Who Are You?</h3>
+            <form>
+                <div class="btn-container">
+                    <button  class="btn-artist">Im an artist</button>
+                    <button  class="btn-listener">Just like music</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="content-box" id="choose-genre-form" style="display: none;">
+            <h3 class="text-md-b text-center">Choose At Least One Genre of The Below</h3>
+            <form id="genre-form">
+                {% csrf_token %}
+                <div class="genre-container">
+                    <label><input type="checkbox" name="genre" value="1"> Rock</label>
+                    <label><input type="checkbox" name="genre" value="2"> World</label>
+                    <label><input type="checkbox" name="genre" value="3"> RnB</label>
+                    <label><input type="checkbox" name="genre" value="4"> Reggae</label>
+                    <label><input type="checkbox" name="genre" value="5"> Rap</label>
+                    <label><input type="checkbox" name="genre" value="6"> Punk</label>
+                    <label><input type="checkbox" name="genre" value="7"> Pop</label>
+                    <label><input type="checkbox" name="genre" value="8"> New Age</label>
+                    <label><input type="checkbox" name="genre" value="9"> Metal</label>
+                    <label><input type="checkbox" name="genre" value="10"> Latin</label>
+                    <label><input type="checkbox" name="genre" value="11"> Jazz</label>
+                    <label><input type="checkbox" name="genre" value="12"> Folk</label>
+                    <label><input type="checkbox" name="genre" value="13"> Electronic</label>
+                    <label><input type="checkbox" name="genre" value="14"> Country</label>
+                    <label><input type="checkbox" name="genre" value="15"> Blues</label>
+                    <label><input type="checkbox" name="genre" value="16"> Indie</label>
+                    <label><input type="checkbox" name="genre" value="17"> Classic</label>
+                </div>
+                <button type="submit" class="btn" id="btn-genre">Start Listening</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+<script src= "{% static 'music/js/login.js' %}"></script>
+</html>

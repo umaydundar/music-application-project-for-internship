@@ -1,0 +1,427 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Music</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" 
+    rel="stylesheet"
+    />
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="{% static 'music/css/create.css' %}"> 
+    <link rel="shortcut icon" href= "{%static 'music/img/logo.png' %}">
+</head>
+<body>
+    <nav class="navbar" aria-label="site-menu">
+        <div class = "navbar-container">
+            <div class="logo">
+                <a href="{% url 'home' %}" id="home-link">
+                    <img src="{% static 'music/img/logo.png' %}" alt="logo"/>
+                    <h3>Musica</h3>
+                </a>
+            </div>
+            <div class="main-menu">
+                <ul>
+                    <li>
+                        <a href="{% url 'home'%}" class = "active"id="home-link-nav" >Home</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'music_search'%}" id="music-search-link">Music Search</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'music_selector' %}" id="select-link">Select</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'profile' %}" id="profile-link">Profile</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'collections' %}" id="collections-link">Collections</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'events' %}" id="events-link">Events</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'live' %}" id="live-link">Live</a>
+                    </li>
+                    <li class="nav-create-item">
+                        <a href="{%url 'create' %}" id="create-link">Create</a>
+                    </li>
+                    <li>
+                        <a class="logout-btn" href="{%url 'login' %}">LogOut</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class = "create-h">
+            <h3>Add Music Or Create Event</h3>
+        </div>
+        <ul class="menu">
+          <li class = "menu-item" data-value="music">Music</li>
+          <li class = "menu-item" data-value="event">Event</li>
+          <li class = "menu-item" data-value="past-creations">Past Creations</li>
+        </ul>
+
+        <div class= "music-addition-container">
+            <div class= "add-single-div">
+                <div class="heading">
+                    <h2>Add Single</h2>
+                </div>
+                <div class= "music-info-addition">
+                    <p>Music Name</p>
+                    <input class="input-area margin-between" type="text" id="music-name" class="text-md-l" required>
+                    <p>Choose a audio file to add</p>
+                    <input type="file" id="music-file-upload" name="upload">
+                    <p>Add a cover image</p>
+                    <input type="file" id="music-image-upload" name="upload">
+                    <p>Choose a lrc file to add</p>
+                    <input type="file" id="music-lrc-upload" name="upload">
+                    <p>Select a Genre</p>
+                    <select class="genre-select-music">
+                        <option value ="1">Rock</option>
+                        <option value = "2">World</option>
+                        <option value = "3">RnB</option>
+                        <option value = "4">Reggae</option>
+                        <option value = "5">Rap</option>
+                        <option value = "6">Punk</option>
+                        <option value = "7">Pop</option>
+                        <option value = "8">New Age</option>
+                        <option value = "9">Metal</option>
+                        <option value = "10">Latin</option>
+                        <option value = "11">Jazz</option>
+                        <option value = "12">Folk</option>
+                        <option value = "13">Electronic</option>
+                        <option value = "14">Country</option>
+                        <option value = "15">Blues</option>
+                        <option value = "16">Indie</option>
+                        <option value = "17">Classic</option>
+                    </select>
+                    <p>Select a Mood</p>
+                    <select class = "mood-select-music">
+                        <option value="1">Happy</option>
+                        <option value="2">Excited</option>
+                        <option value="3">Radiant</option>
+                        <option value="4">Powerful</option>
+                        <option value="5">Relaxed</option>
+                        <option value="6">Gentle</option>
+                        <option value="7">Passionate</option>
+                        <option value="8">Sad</option>
+                        <option value="9">Peaceful</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="create-single-btn">Create Single</button>
+                </div>
+            </div> 
+
+            <div class= "add-album-div">
+                <div class= "heading">
+                    <h2>Add Album</h2>
+                </div>
+                <div class="album-info-addition">
+                    <p>Add an album name</p>
+                    <input class="input-area margin-between" type="text" id="album-name" placeholder="album name" class="text-md-l" required>
+                    <p>Add a cover image</p>
+                    <input type="file" id="album-cover-image" required>
+                    <p>Select a Genre</p>
+                    <select class="genre-select-album">
+                        <option value ="1">Rock</option>
+                        <option value = "2">World</option>
+                        <option value = "3">RnB</option>
+                        <option value = "4">Reggae</option>
+                        <option value = "5">Rap</option>
+                        <option value = "6">Punk</option>
+                        <option value = "7">Pop</option>
+                        <option value = "8">New Age</option>
+                        <option value = "9">Metal</option>
+                        <option value = "10">Latin</option>
+                        <option value = "11">Jazz</option>
+                        <option value = "12">Folk</option>
+                        <option value = "13">Electronic</option>
+                        <option value = "14">Country</option>
+                        <option value = "15">Blues</option>
+                        <option value = "16">Indie</option>
+                        <option value = "17">Classic</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="create-album-btn">Create Album</button>
+                </div>
+            </div>
+
+            <div class="modal manage-album-songs-modal">
+                <div class= "modal-content">
+                    <button class = "btn btn-add-multi-musics">Add Music</button>
+                </div>
+            </div>
+
+            <div class="modal add-music-modal" id="new-input-modal">
+                <div class="modal-content">
+                    <div class= "musics-addition">
+                        <div class= "music-info-addition">
+                            <p>Music Name</p>
+                            <input class="input-area margin-between" type="text" id="music-name-album" class="text-md-l" required>
+                            <p>Choose a audio file to add</p>
+                            <input type="file" id="music-file-upload-album" name="upload">
+                            <p>Add a cover image</p>
+                            <input type="file" id="music-image-upload-album" name="upload">
+                            <p>Choose a lrc file to add</p>
+                            <input type="file" id="music-lrc-upload-album" name="upload">
+                            <p>Select a Genre</p>
+                            <select class="genre-select-music-album">
+                                <option value ="1">Rock</option>
+                                <option value = "2">World</option>
+                                <option value = "3">RnB</option>
+                                <option value = "4">Reggae</option>
+                                <option value = "5">Rap</option>
+                                <option value = "6">Punk</option>
+                                <option value = "7">Pop</option>
+                                <option value = "8">New Age</option>
+                                <option value = "9">Metal</option>
+                                <option value = "10">Latin</option>
+                                <option value = "11">Jazz</option>
+                                <option value = "12">Folk</option>
+                                <option value = "13">Electronic</option>
+                                <option value = "14">Country</option>
+                                <option value = "15">Blues</option>
+                                <option value = "16">Indie</option>
+                                <option value = "17">Classic</option>
+                            </select>
+                            <p>Select a Mood</p>
+                            <select class = "mood-select-music-album">
+                                <option value="1">Happy</option>
+                                <option value="2">Excited</option>
+                                <option value="3">Radiant</option>
+                                <option value="4">Powerful</option>
+                                <option value="5">Relaxed</option>
+                                <option value="6">Gentle</option>
+                                <option value="7">Passionate</option>
+                                <option value="8">Sad</option>
+                                <option value="9">Peaceful</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class= "btn btn-add-music-to-album">Add Music To Album</button>
+                    <button class= "btn btn-add-music-and-continue">Save And Continue Adding Music</button>
+                </div>
+            </div> 
+
+       </div>    
+   
+        <div class="event-addition-container">
+            <div class="add-event-div">
+                <div class="heading">
+                    <h2>Add Event</h2>
+                </div>
+                <div class= "event-addition">
+                    <p>Add event name</p>
+                    <input class="input-area margin-between" type="text" id="event-name" placeholder="event-name" class="text-md-l" required>
+                    <p>Add event date</p>
+                    <input class="input-area margin-between" type="date" id="event-date" placeholder="event-date" class="text-md-l" required>
+                    <p>Add event location</p>
+                    <input class="input-area margin-between" type="text" id="event-location" placeholder="event-location" class="text-md-l" required>
+                    <p>Add event info</p>
+                    <input class="input-area margin-between" type="text" id="event-info" placeholder="event-info" class="text-md-l" required>
+                    <p>Add event image</p>
+                    <input type="file" id="event-image" name="event-image">
+                    <div>
+                        <button class="create-event-btn">Create Event</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-live-div">
+                <div class= "heading">
+                    <h2>Add Live Event</h2>
+                </div>
+                <div class="live-event-addition">
+                    <p>Add event name</p>
+                    <input class="input-area margin-between" type="text" id="live-event-name" placeholder="event-name" class="text-md-l" required>
+                    <p>Add event info</p>
+                    <input class="input-area margin-between" type="text" id="live-event-info" placeholder="event-info" class="text-md-l" required>
+                    <p>Add event date</p>
+                    <input class="input-area margin-between" type="date" id="live-event-date" placeholder="event-info" class="text-md-l" required>
+                    <p>Add event link</p>
+                    <input class="input-area margin-between" type="text" id="live-event-link" placeholder="event-link" class="text-md-l">
+                    <p>Add event image</p>
+                    <input type="file" id="live-event-image" name="event-image">
+                </div>
+                <div>
+                    <button class="create-live-event-btn">Create Live Event</button>
+                </div>
+            </div>
+        </div>
+
+        <div class= "past-creations-container">
+            <div class= "created-singles">
+                <div class= "heading">
+                    <h2>Created Singles</h2>
+                    <button class= "delete-single-btn">Delete Single</button>
+                </div>
+                <div class="singles-list">
+
+                </div>
+            </div>
+            <div class = "created-albums">
+                <div class= "heading">
+                    <h2>Created Albums</h2>
+                    <button class= "edit-album-btn">Edit Album</button>
+                    <button class= "delete-album-btn">Delete Album</button>
+                </div>
+                <div class="albums-list">
+
+                </div>
+            </div>
+            <div class = "created-events">
+                <div class= "heading">
+                    <h2>Created Events</h2>
+                    <button class= "delete-event-btn">Delete Event</button>
+                </div>
+                <div class= "events-list">
+
+                </div>
+            </div>
+            <div class = "created-live-events">
+                <div class= "heading">
+                    <h2>Created Live Events</h2>
+                    <button class= "delete-live-event-btn">Delete Live Event</button>
+                </div>
+                <div class= "live-events-list">
+                    
+                </div>
+            </div>
+
+            <div class= "modal delete-single-modal">
+                <div class="modal-content">
+                    <div class= "created-singles-modal-content">
+    
+                    </div>
+                    <button class="btn btn-remove-single">Delete Single</button>
+                </div>
+            </div>
+    
+            <div class="modal delete-album-modal">
+                <div class="modal-content">
+                    <div class= "created-albums-modal-content">
+    
+                    </div>
+                    <button class="btn btn-remove-album">Delete Album</button>
+                </div>
+            </div>
+
+            <div class="modal edit-album-modal">
+                <div class="modal-content">
+                    <h4>Choose One Of The Albums For Editing</h4>
+                    <div class= "created-albums-edit-modal-content">
+
+                    </div>
+                    <button class= "btn choose-album-btn">Continue Editing Album</button>
+                </div>
+            </div>
+
+            <div class="modal add-remove-modal">
+                <div class="modal-content">
+                    <h4>Choose One Of The Below</h4>
+                    <button class="btn edit-add-music-btn">Add Music</button>
+                    <button class="btn edit-remove-music-btn">Remove Music</button>
+                </div>
+            </div>
+
+            <div class="modal add-song-to-album-modal">
+                <div class="modal-content">
+                    <div class= "edit-album-musics-add">
+                        <div class= "music-info-addition">
+                            <p>Music Name</p>
+                            <input class="input-area margin-between" type="text" id="music-name-album-edit" class="text-md-l" required>
+                            <p>Choose a audio file to add</p>
+                            <input type="file" id="music-file-upload-album-edit" name="upload">
+                            <p>Add a cover image</p>
+                            <input type="file" id="music-image-upload-album-edit" name="upload">
+                            <p>Choose a lrc file to add</p>
+                            <input type="file" id="music-lrc-upload-album-edit" name="upload">
+                            <p>Select a Genre</p>
+                            <select class="genre-select-music-album-edit">
+                                <option value ="1">Rock</option>
+                                <option value = "2">World</option>
+                                <option value = "3">RnB</option>
+                                <option value = "4">Reggae</option>
+                                <option value = "5">Rap</option>
+                                <option value = "6">Punk</option>
+                                <option value = "7">Pop</option>
+                                <option value = "8">New Age</option>
+                                <option value = "9">Metal</option>
+                                <option value = "10">Latin</option>
+                                <option value = "11">Jazz</option>
+                                <option value = "12">Folk</option>
+                                <option value = "13">Electronic</option>
+                                <option value = "14">Country</option>
+                                <option value = "15">Blues</option>
+                                <option value = "16">Indie</option>
+                                <option value = "17">Classic</option>
+                            </select>
+                            <p>Select a Mood</p>
+                            <select class = "mood-select-music-album-edit">
+                                <option value="1">Happy</option>
+                                <option value="2">Excited</option>
+                                <option value="3">Radiant</option>
+                                <option value="4">Powerful</option>
+                                <option value="5">Relaxed</option>
+                                <option value="6">Gentle</option>
+                                <option value="7">Passionate</option>
+                                <option value="8">Sad</option>
+                                <option value="9">Peaceful</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class= "btn edit-add-musics-album">Add Music To Album</button>
+                </div>
+            </div>
+
+            <div class="modal remove-song-from-album-modal">
+                <div class="modal-content">
+                    <div class= "edit-album-musics-remove">
+
+                    </div>
+                    <button class= "btn edit-remove-musics-album">Remove Musics From Album</button>
+                </div>
+            </div>
+    
+            <div class="modal delete-event-modal">
+                <div class="modal-content">
+                    <div class= "created-events-modal-content">
+    
+                    </div>
+                    <button class="btn btn-remove-event">Delete Event</button>
+                </div>
+            </div>
+    
+            <div class= "modal delete-live-event-modal">
+                <div class="modal-content">
+                    <div class= "created-live-events-modal-content">
+    
+                    </div>
+                    <button class="btn btn-remove-live-event">Delete Live Event</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+</body>
+<script>window.aichatbotApiKey="d68e432a-7066-4e91-a2d1-52c7ba2a543f"; window.aichatbotProviderId="f9e9c5e4-6d1a-4b8c-8d3f-3f9e9c5e46d1";</script><script src="https://script.chatlab.com/aichatbot.js" id="d68e432a-7066-4e91-a2d1-52c7ba2a543f" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/cloudinary-core@2.11.1/cloudinary-core-shrinkwrap.min.js"></script>
+<script type = "module" src="{% static 'music/js/create.js' %}"></script>
+</html>
+

@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" 
+    rel="stylesheet"
+    />
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="{%static 'music/css/live.css' %}"> 
+    <link rel="shortcut icon" href= "{%static 'music/img/logo.png' %}">
+</head>
+    <body>
+        <nav class="navbar" aria-label="site-menu">
+            <div class = "navbar-container">
+                <div class="logo">
+                    <a href="{% url 'home' %}" id="home-link">
+                        <img src="{% static 'music/img/logo.png' %}" alt="logo"/>
+                        <h3>Musica</h3>
+                    </a>
+                </div>
+                <div class="main-menu">
+                    <ul>
+                        <li>
+                            <a href="{% url 'home'%}" class = "active" id="home-link-nav">Home</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'music_search'%}" id="music-search-link">Music Search</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'music_selector' %}" id="select-link">Select</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'profile' %}" id="profile-link">Profile</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'collections' %}" id="collections-link">Collections</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'events' %}" id="events-link">Events</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'live' %}" id="live-link">Live</a>
+                        </li>
+                        <li class="nav-create-item">
+                            <a href="{%url 'create' %}" id="create-link">Create</a>
+                        </li>
+                        <li>
+                            <a class="logout-btn" href="{%url 'login' %}">LogOut</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <div class= "container">
+        <div class = "live-container">
+            <div class= "live-h">
+                <h2>Live Events</h2>
+            </div>
+            <div class = "events-general-container">
+                <div class = "search-and-filter-container">
+                    <div class="search-bar-container">
+                        <input class="search-bar search-event-bar" type="search" id="search-event" placeholder="Search Music Event" autocomplete="on">
+                        <button class= "music-search-button" id="newTaskSearchButton">Search</button>
+                    </div>
+                    <div class= "filter-field-container">
+                        <h4>Filter Event</h4>
+                        <select class="events-selection-filter" name="events-selection-filter" id="events-selection">
+                            <option value="all">All</option>
+                            <option value="favourite">Your Favourites Only</option>
+                            <option value="top">From Top Artists</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class= "events-container">
+                <div class = "all">
+                    <div class= "heading">
+                        <h2>All Live Events</h2>
+                    </div>
+                    <!--dynamically generated top artist event list-->
+                </div>
+                <div class = "favourite">
+                    <div class = "heading">
+                        <h2>Your Favourite Artists Live Events</h2>
+                    </div>
+                    <!--dynamically generated favourite artist event list -->
+                </div>
+                <div class= "top">
+                    <div class= "heading">
+                        <h2>Top Artists Live Events</h2>
+                    </div>
+                    <!--dynamically generated other events list-->
+                </div>
+                <div class="not-found-content">
+                    <h3>No Results Found</h3>
+                    <img  class = "not-found-content-img" src = "{%static '../static/music/img/no_result.jpg'%}" alt="no-result">
+                </div>
+            </div>
+        </div>
+    </div>   
+</body>
+<script>window.aichatbotApiKey="d68e432a-7066-4e91-a2d1-52c7ba2a543f"; window.aichatbotProviderId="f9e9c5e4-6d1a-4b8c-8d3f-3f9e9c5e46d1";</script><script src="https://script.chatlab.com/aichatbot.js" id="d68e432a-7066-4e91-a2d1-52c7ba2a543f" defer></script>
+<script src="{% static 'music/js/live.js' %}"></script>
+</html>

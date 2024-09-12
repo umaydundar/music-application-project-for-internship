@@ -1,0 +1,357 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" 
+    rel="stylesheet"
+    />
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="{% static 'music/css/collections.css' %}"> 
+    <link rel="shortcut icon" href= "{%static 'music/img/logo.png' %}">
+</head>
+<body>
+    <nav class="navbar" aria-label="site-menu">
+        <div class = "navbar-container">
+            <div class="logo">
+                <a href="{% url 'home' %}" id="home-link">
+                    <img src="{% static 'music/img/logo.png' %}" alt="logo"/>
+                    <h3>Musica</h3>
+                </a>
+            </div>
+            <div class="main-menu">
+                <ul>
+                    <li>
+                        <a href="{% url 'home'%}" class = "active" id="home-link-nav">Home</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'music_search'%}" id="music-search-link">Music Search</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'music_selector' %}" id="select-link">Select</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'profile' %}" id="profile-link">Profile</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'collections' %}" id="collections-link">Collections</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'events' %}"  id="events-link">Events</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'live' %}" id="live-link">Live</a>
+                    </li>
+                    <li class="nav-create-item">
+                        <a href="{%url 'create' %}" id="create-link">Create</a>
+                    </li>
+                    <li>
+                        <a class="logout-btn" href="{%url 'login' %}" >LogOut</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class= "collections-albums-container">
+            <div class= "collections-container">
+                <div class=" heading-div">
+                    <h2>Collections</h2>
+                    <button class="manage-collections-btn">Manage Collections</button>
+                </div>
+                <div class="collections-list">
+        
+                </div>
+            </div>
+        
+            <div class="collections">
+                <div class="modal manage-collections-modal">
+                    <div class= "modal-content">
+                        <h3>Add, Remove Or Edit Collections</h3>
+                        <button class= "btn btn-add-collections">Add New Collection</button>
+                        <button class= "btn btn-remove-collections">Remove Collection</button>
+                        <button class= "btn btn-edit-collections">Edit Collections</button>
+                    </div>
+                </div>
+
+                <div id="add-new-collection-modal" class="modal add-new-collection-modal">
+                    <div class="modal-content">
+                        <h4>Create New Collection</h4>
+                        <label for="collection-name">New collection Name</label>
+                        <input class="input-area margin-between" type="text" id="collection-name" name="new-collection-name" placeholder="new-collection-name" class="text-md-l" required>
+                        <label for="collection-name">Collection Image</label>
+                        <input class="input-area margin-between" type="file" id="collection-image" name="new-collection-image" placeholder="new-collection-name" class="text-md-l" required>
+                        <button class= "btn create-collection-btn">Create Collection</button>
+                    </div>
+                </div>
+
+                <div class="modal add-music-collection-modal">
+                    <div class="modal-content">
+                        <p>Search A Music Or Look For Suggestions</p>
+                        <button class= "btn btn-search-music-collection">Search</button>
+                        <button class= "btn btn-suggest-music-collection">Look Suggestions</button>
+                    </div>
+                </div>
+
+                <div class= "modal search-musics-modal-collection">
+                    <div class= "modal-content">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="search-string-music-collection" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-search-all-musics-collection">Search</button>
+                        </form>
+                        <div class= "search-results-music-collection">
+    
+                        </div>
+                        <div class="search-content" id="music-search-collection">
+                            <h3>Search A Music</h3>
+                            <img  class = "search-content-img" src = "{%static '../static/music/img/search.jpg'%}" alt="search">
+                        </div>
+                        <div class="not-found-content">
+                            <h3>No Results Found</h3>
+                            <img  class = "not-found-content-img" src = "{%static '../static/music/img/no_result.jpg'%}" alt="no-result">
+                        </div>
+                        <button class= "btn search-add-music-collection">Add Music</button>
+                    </div>
+                </div>
+    
+                <div class= "modal look-music-suggestions-modal-collection">
+                    <div class= "modal-content">
+                        <div class="music-suggestions-collection">
+                            <!--dynamically created suggestions shown there-->
+                        </div>
+                        <button class= "btn suggest-add-music-collection">Add Music</button>
+                    </div>
+                </div>
+
+                <div class="modal delete-collections-modal">
+                    <div class="modal-content">
+                        <div class= "collections-for-deletion">
+
+                        </div>
+                        <button id= "remove-collections" class="btn remove-collections">Remove Collections</button>
+                    </div>
+                </div>
+
+                <div class="modal edit-collections-modal">
+                    <div class="modal-content">
+                        <div class= "collections-for-edit">
+
+                        </div>
+                        <button class="btn btn-edit-collection">Edit Collection</button>
+                    </div>
+                </div>
+
+                <div class="modal edit-collection-modal">
+                    <div class= "modal-content">
+                        <h3>Add Or Remove Musics</h3>
+                        <button class= "btn btn-edit-collection-add-music">Add Music</button>
+                        <button class= "btn btn-edit-collection-remove-music">Remove Music</button>
+                    </div>
+                </div>
+
+                <div id="delete-musics-modal" class="modal delete-musics-modal-collection">
+                    <div class="modal-content">
+                        <div class= "collection-musics-to-remove">
+    
+                        </div>
+                        <button class= "btn btn-remove-musics-from-collection">Remove Musics</button>
+                    </div>
+                </div>
+           </div>
+
+           <div class="saved-albums-general-container">
+                <div class= "saved-albums-container">
+                    <div class=" heading-div">
+                        <h2>Saved Albums</h2>
+                        <button class= "manage-saved-albums-btn">Manage Saved Albums</button>
+                    </div>
+                    <div class= "saved-albums-list">
+                        <!--dynamically generated list items-->
+                    </div>
+                </div>
+
+                <div class ="saved-albums">
+                    <div class="modal manage-albums-modal">
+                        <div class= "modal-content">
+                            <h3>Add Or Remove Album</h3>
+                            <button class= "btn btn-add-album">Add New Album</button>
+                            <button class= "btn btn-remove-album">Remove Album</button>
+                        </div>
+                    </div>
+        
+                    <div class="modal add-albums-modal">
+                        <div class="modal-content">
+                            <p>Search An Album Or Look For Suggestions</p>
+                            <button class= "btn btn-search-album">Search</button>
+                            <button class= "btn btn-suggest-album">Look Suggestions</button>
+                        </div>
+                    </div>
+        
+                    <div class= "modal search-albums-modal">
+                        <div class= "modal-content">
+                            <div class="search-bar-container">
+                                <input class="search-string-album-for-save" type="search" id="search-music" placeholder="Search" autocomplete="on">
+                                <button class= "btn btn-search-all-albums">Search</button>
+                            </div>
+                            <div class= "search-results-album">
+        
+                            </div>
+                            <div class="search-content album-search-content" id="album-search-content">
+                                <h3>Search Albums</h3>
+                                <img  class = "search-content-img" src = "{%static '../static/music/img/search.jpg'%}" alt="search">
+                            </div>
+                            <div class="not-found-content">
+                                <h3>No Results Found</h3>
+                                <img  class = "not-found-content-img" src = "{%static '../static/music/img/no_result.jpg'%}" alt="no-result">
+                            </div>
+                            <button class= "btn btn-search-add-album">Add Album</button>
+                        </div>
+                    </div>
+        
+                    <div class= "modal look-album-suggestions-modal">
+                        <div class= "modal-content">
+                            <div class= "album-suggestions">
+                                <!--dynamically created suggestions shown there-->
+                            </div>
+                            <button class= "btn btn-suggest-add-album">Add Album</button>
+                        </div>
+                    </div>
+        
+                    <div id="modal delete-albums-modal" class="modal delete-albums-modal">
+                        <div class="modal-content">
+                            <div class="albums-for-remove-saved">
+
+                            </div>
+                            <button class="btn btn-remove-selected-album">Remove Albums</button>
+                        </div>
+                    </div>
+                   
+                </div>
+           </div> 
+           <div class= "playlists-general-container">
+                <div class= "playlists-container">
+                    <div class= "heading-div">
+                        <h2>PlayLists</h2>
+                        <button class= "manage-playlists-btn">Manage Playlists</button>
+                    </div>
+                    <div class= "playlists-div">
+    
+                    </div>
+                </div>
+                <div class= "playlists">
+                    <div class="modal manage-playlists-modal">
+                        <div class= "modal-content">
+                            <h3>Add, Remove Or Edit Playlistss</h3>
+                            <button class= "btn btn-add-playlists">Add New Playlists</button>
+                            <button class= "btn btn-remove-playlists">Remove Playlists</button>
+                            <button class= "btn btn-edit-playlists">Edit Playlists</button>
+                        </div>
+                    </div>
+    
+                    <div class="modal add-new-playlist-modal">
+                        <div class="modal-content">
+                            <h4>Create New Playlist</h4>
+                            <label for="collection-name">New Playlist Name</label>
+                            <input class="input-area margin-between" type="text" id="playlist-name" placeholder="new-collection-name" class="text-md-l" required>
+                            <label for="collection-name">Playlist Image</label>
+                            <input class="input-area margin-between" type="file" id="playlist-image" placeholder="new-collection-name" class="text-md-l" required>
+                            <button class= "btn btn-create-playlist">Create Playlist</button>
+                        </div>
+                    </div>
+    
+                    <div class="modal add-music-playlist-modal">
+                        <div class="modal-content">
+                            <p>Search A Music Or Look For Suggestions</p>
+                            <button class= "btn btn-search-music-playlist">Search</button>
+                            <button class= "btn btn-suggest-music-playlist">Look Suggestions</button>
+                        </div>
+                    </div>
+    
+                    <div class= "modal search-musics-modal-playlist">
+                        <div class= "modal-content">
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="search-string-music-playlist" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-search-all-musics-playlist">Search</button>
+                            </form>
+                            <div class= "search-results-music-playlist">
+        
+                            </div>
+                            <div class="search-content music-search-content-playlist" id="music-search-playlist">
+                                <h3>Search A Music</h3>
+                                <img  class = "search-content-img" src = "{%static '../static/music/img/search.jpg'%}" alt="search">
+                            </div>
+                            <div class="not-found-content">
+                                <h3>No Results Found</h3>
+                                <img  class = "not-found-content-img" src = "{%static '../static/music/img/no_result.jpg'%}" alt="no-result">
+                            </div>
+                            <button class="btn btn-search-add-music-playlist">Add Music</button>
+                        </div>
+                    </div>
+        
+                    <div class= "modal look-music-suggestions-modal-playlist">
+                        <div class= "modal-content">
+                            <div class="music-suggestions-playlist">
+                                <!--dynamically created suggestions shown there-->
+                            </div>
+                            <button class="btn btn-suggest-add-music-playlist">Add Music</button>
+                        </div>
+                    </div>
+    
+                    <div class="modal delete-playlists-modal">
+                        <div class="modal-content">
+                            <div class= "playlists-for-remove">
+
+                            </div>
+                            <button id= "remove-playlists" class= "btn remove-playlists">Remove Playlist</button>
+                        </div>
+                    </div>
+    
+                    <div class="modal edit-playlists-modal">
+                        <div class="modal-content">
+                            <div class= "playlists-for-edit">
+
+                            </div>
+                            <button class= "btn btn-edit-playlist">Edit Playlist</button>
+                        </div>
+                    </div>
+    
+                    <div class="modal edit-playlist-modal">
+                        <div class= "modal-content">
+                            <h3>Add Or Remove Musics</h3>
+                            <button class= "btn btn-add-music-to-playlist">Add Music</button>
+                            <button class= "btn btn-remove-music-from-playlist">Remove Music</button>
+                        </div>
+                    </div>
+    
+                    <div id="delete-musics-modal" class="modal delete-musics-modal-playlist">
+                        <div class="modal-content">
+                            <div class="playlist-musics-to-remove">
+        
+                            </div>
+                            <button class= "btn btn-remove-musics-playlist">Remove Musics</button>
+                        </div>
+                    </div>
+
+                </div>    
+           </div>   
+        </div>
+    </div> 
+</body>
+<script>window.aichatbotApiKey="d68e432a-7066-4e91-a2d1-52c7ba2a543f"; window.aichatbotProviderId="f9e9c5e4-6d1a-4b8c-8d3f-3f9e9c5e46d1";</script><script src="https://script.chatlab.com/aichatbot.js" id="d68e432a-7066-4e91-a2d1-52c7ba2a543f" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/cloudinary-core@2.11.1/cloudinary-core-shrinkwrap.min.js"></script>
+<script src="{% static 'music/js/collections.js' %}"></script>
+</html>
+
